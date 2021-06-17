@@ -3,7 +3,7 @@
 ## Getting Started
 
 - This test can serve as base for your own test cases, it includes only sample edge cases tests.
-- Build with Unity testing framework.
+- Built with Unity testing framework.
 
 ## Setup
 
