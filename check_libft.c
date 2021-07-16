@@ -127,24 +127,24 @@ void	test_ft_isprint(void)
 	TEST_ASSERT_FALSE(ft_isprint(31));
 }
 
-void	test_ft_memccpy(void)
-{
-	char	src[60];
-	char	dest[50];
+// void	test_ft_memccpy(void)
+// {
+// 	char	src[60];
+// 	char	dest[50];
 
-	strcpy(src, "Memc cpy copies from src to dest n bytes or until ch");
-	strcpy(dest, "Heloooo!!");
-	TEST_ASSERT_EQUAL((dest + 4), memccpy(dest, src, 'c', 5));
-	TEST_ASSERT_EQUAL('o', *(dest + 4));
-	TEST_ASSERT_EQUAL_STRING("Memcooo!!", dest);
-	strcpy(dest, "Heloooo!!");
-	TEST_ASSERT_EQUAL((dest + 4), ft_memccpy(dest, src, 'c', 5));
-	TEST_ASSERT_EQUAL('o', *(dest + 4));
-	TEST_ASSERT_EQUAL_STRING("Memcooo!!", dest);
-	strcpy(dest, "Heloooo!!");
-	TEST_ASSERT_NULL(memccpy(dest, src, 'y', 5));
-	TEST_ASSERT_NULL(ft_memccpy(dest, src, 'y', 5));
-}
+// 	strcpy(src, "Memc cpy copies from src to dest n bytes or until ch");
+// 	strcpy(dest, "Heloooo!!");
+// 	TEST_ASSERT_EQUAL((dest + 4), memccpy(dest, src, 'c', 5));
+// 	TEST_ASSERT_EQUAL('o', *(dest + 4));
+// 	TEST_ASSERT_EQUAL_STRING("Memcooo!!", dest);
+// 	strcpy(dest, "Heloooo!!");
+// 	TEST_ASSERT_EQUAL((dest + 4), ft_memccpy(dest, src, 'c', 5));
+// 	TEST_ASSERT_EQUAL('o', *(dest + 4));
+// 	TEST_ASSERT_EQUAL_STRING("Memcooo!!", dest);
+// 	strcpy(dest, "Heloooo!!");
+// 	TEST_ASSERT_NULL(memccpy(dest, src, 'y', 5));
+// 	TEST_ASSERT_NULL(ft_memccpy(dest, src, 'y', 5));
+// }
 
 void	test_ft_memchr(void)
 {
@@ -454,6 +454,12 @@ char	f(unsigned int pos, char c)
 	return (c);
 }
 
+void	fiter(unsigned int pos, char *c)
+{
+	pos = ft_toupper(*c);
+	*c = (char)(pos);
+}
+
 void	test_ft_strmapi(void)
 {
 	const char	s[] = "Lorem ipsum dolor sit amet";
@@ -462,6 +468,14 @@ void	test_ft_strmapi(void)
 	res = ft_strmapi(s, f);
 	TEST_ASSERT_EQUAL_STRING("LOREM IPSUM DOLOR SIT AMET", res);
 	free(res);
+}
+
+void	test_ft_striteri(void)
+{
+	static char	s[] = "Lorem ipsum dolor sit amet";
+
+	ft_striteri(s, fiter);
+	TEST_ASSERT_EQUAL_STRING("LOREM IPSUM DOLOR SIT AMET", s);
 }
 
 void	test_ft_putchar_fd(void)
@@ -557,7 +571,7 @@ int	main(void)
 	RUN_TEST(test_ft_isascii);
 	RUN_TEST(test_ft_isdigit);
 	RUN_TEST(test_ft_isprint);
-	RUN_TEST(test_ft_memccpy);
+	//RUN_TEST(test_ft_memccpy);
 	RUN_TEST(test_ft_memchr);
 	RUN_TEST(test_ft_memcmp);
 	RUN_TEST(test_ft_memcpy);
@@ -580,6 +594,7 @@ int	main(void)
 	RUN_TEST(test_ft_split);
 	RUN_TEST(test_ft_itoa);
 	RUN_TEST(test_ft_strmapi);
+	RUN_TEST(test_ft_striteri);
 	RUN_TEST(test_ft_putchar_fd);
 	RUN_TEST(test_ft_putstr_fd);
 	RUN_TEST(test_ft_putendl_fd);
